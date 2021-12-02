@@ -8,6 +8,7 @@ import * as EmailValidator from 'email-validator';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Chat from '../Chat/Chat';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function Sidebar() {
   const [user] = useAuthState(auth);
@@ -41,7 +42,11 @@ function Sidebar() {
   return (
     <Container>
       <Header>
-        <UserAvatar src={user?.photoURL} onClick={() => auth.signOut()} />
+        <Tooltip title="Sign Out">
+          <IconButton aria-label="signout">
+            <UserAvatar src={user?.photoURL} onClick={() => auth.signOut()} />
+          </IconButton>
+        </Tooltip>
         <IconsContainer>
           <IconButton>
             <ChatIcon />
